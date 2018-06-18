@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>恐龙王国</title>
+    <link rel="stylesheet" type="text/css" media="screen,print" href="css/style.css">
+</head>
+<body class="keBody" style="">
+<div class="box"></div>
+<script type="text/javascript" src="lib/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="lib/three.min.js"></script>
+<script type="text/javascript" src="lib/assets.js"></script>
+<script type="text/javascript" src="lib/preloadjs.min.js"></script>
+<script type="text/javascript" src="lib/TweenMax.min.js"></script>
+<script type="text/javascript" src="lib/Stats.js"></script>
+<script type="text/javascript" src="lib/image-gallery-three.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var box = $(".box").ig3js({
+            manifest: [
+                {src:"image1.gif", id:"image1"},
+                {src:"image2.gif", id:"image2"},
+                {src:"image3.gif", id:"image3"},
+                {src:"image4.gif", id:"image4"},
+                {src:"image5.gif", id:"image5"},
+                {src:"image6.gif", id:"image6"},
+                {src:"image7.gif", id:"image7"},
+                {src:"image8.gif", id:"image8"}
+            ],
+            imagePath: 'images/',
+            alphaBackground: true,
+            onNavigateComplete: function(obj){
+            }
+        });
+
+        $(".next").click(function(){
+            box.navigate.next();
+            return false;
+        });
+
+        $(".prev").click(function(){
+            box.navigate.prev();
+            return false;
+        });
+
+        $(".defP").click(function(){
+            box.perspective.default();
+            return false;
+        });
+
+        $(".trP").click(function(){
+            box.perspective.topRight();
+            return false;
+        });
+
+        $(".tlP").click(function(){
+            box.perspective.topLeft();
+            return false;
+        });
+
+        for(count=1; count<=7; count++){
+            $(".goto").append('<a href="#" class="goto'+count+'" pos="'+(count-1)+'"> '+count+' </a>');
+            $(".goto"+count).click(function(){
+                box.navigate.goTo($(this).attr("pos"));
+                return false;
+            });
+        }
+
+    });
+</script>
+
+</body>
+</html>
